@@ -1,0 +1,39 @@
+{
+  "name": "sql-string-template",
+  "version": "1.0.1",
+  "description": "ES2015 tagged template string for preparing statements",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leecjson/node-sql-string-template.git"
+  },
+  "keywords": [
+    "template",
+    "templates",
+    "render",
+    "string",
+    "sql",
+    "bind",
+    "prepared",
+    "statement",
+    "format",
+    "query",
+    "builder",
+    "build",
+    "mysql",
+    "pgsql"
+  ],
+  "author": "leecjson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leecjson/node-sql-string-template/issues"
+  },
+  "homepage": "https://github.com/leecjson/node-sql-string-template#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.15",
+    "jest": "^26.6.0"
+  }
+}
