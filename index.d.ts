@@ -9,7 +9,7 @@ export declare class Statement {
   pack(): [string, any[]];
 }
 
-declare function SQLStringTemplate(strings: string[], ...args: any[]): Statement;
+declare function SQLStringTemplate(strings: TemplateStringsArray, ...args: any[]): Statement;
 
 declare namespace SQLStringTemplate {
   function set(values: object): Statement;
