@@ -1,6 +1,6 @@
 {
   "name": "sql-string-template",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "ES2015 tagged template string for preparing statements",
   "main": "index.js",
   "scripts": {

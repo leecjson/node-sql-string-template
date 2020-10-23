@@ -13,13 +13,19 @@ A tiny tool allow you to use ES2015 template strings to render a sql prepared st
 ### Insert
 ```javascript
 const SQL = require('sql-string-template');
-const data = { name: "jon", age: 12 };
-const [sql, params] = SQL`
-  INSERT INTO account (name, age) values (${name}, ${age})
-`.pack();
-/*
-sql: "INSERT INTO account (name, age) values (?, ?)"
-params:  ["jon", 12]
+
+const data = { 
+  name: "jon", 
+  age: 12 
+};
+const stmt = SQL`
+  INSERT INTO account 
+    (name, age) 
+    values 
+    (${data.name}, ${data.age})
+`;
+// stmt.sql: "INSERT INTO account (name, age) values (?, ?)"
+// stmt.params:  ["jon", 12]
 */
 ```
 
@@ -32,10 +38,8 @@ const data = { name: "jon", age: 12 };
 const [sql, params] = SQL`
   INSERT INTO account ${values(data)}
 `.pack();
-/*
-sql: "INSERT INTO account (name, age) values (?, ?)"
-params:  ["jon", 12]
-*/
+// sql: "INSERT INTO account (name, age) values (?, ?)"
+// params:  ["jon", 12]
 ```
 
 ### Update
