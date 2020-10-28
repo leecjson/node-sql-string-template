@@ -26,6 +26,15 @@ class Statement {
     return [this._sql, this._params];
   }
 
+  spread() {
+    return [this._sql, this._params];
+  }
+
+  rebind(params) {
+    this._params = params;
+    return this;
+  }
+
   /**
    * @returns {string}
    */
@@ -88,4 +97,9 @@ exports.values = (values) => {
     `(${keys.join(', ')}) values (${keys.map(() => '?').join(', ')})`,
     keys.map(k => values[k])
   );
+};
+
+exports.join = (values) => {
+  assert(Array.isArray(values));
+  return new Statement(values.map(() => '?').join(', '), [...values]);
 };

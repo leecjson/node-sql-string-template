@@ -37,7 +37,7 @@ const { values } = SQL;
 const data = { name: "jon", age: 12 };
 const [sql, params] = SQL`
   INSERT INTO account ${values(data)}
-`.pack();
+`.spread();
 // sql: "INSERT INTO account (name, age) values (?, ?)"
 // params:  ["jon", 12]
 ```
@@ -51,7 +51,8 @@ const [sql, params] = SQL`
     age: 12,
     school: null,
   })}
-`.pack();
+  WHERE id = ${1}
+`.spread();
 /*
 sql: "UPDATE account SET name=?, age=?, school=?"
 params:  ["jon", 12, null]
@@ -79,4 +80,41 @@ const stmt = SQL`
 stmt.sql: "SELECT id, name, pwd FROM account WHERE 1=1 AND startDate=?"
 stmt.params:  ["2020-5-5"]
 */
+```
+
+
+## Keyword Functions
+
+#### values
+```javascript
+const data = {
+  name: 'fk',
+  age: 18
+};
+const stmt = SQL`insert into tbl ${SQL.values(data)}`;
+stmt.sql; /* insert into tbl (name, age) values (?, ?) */
+stmt.params; /* ['fk', 18] */
+```
+
+### set
+```javascript
+const data = {
+  name: 'fk',
+  age: 18
+};
+const stmt = SQL`update tbl set ${SQL.set(data)}`;
+stmt.sql; /* update tbl set name=?, age=? */
+stmt.params; /* ['fk', 18] */
+```
+
+### join
+```javascript
+const list = [
+  "Nick", 
+  "Adidas",
+  "Jordon"
+];
+const stmt = SQL`select * from tbl where a in (${SQL.join(list)})`;
+stmt.sql; /* select * from tbl where a in (?, ?, ?) */
+stmt.params; /* ["Nick", "Adidas", "Jordon"] */
 ```

@@ -7,6 +7,17 @@ export declare class Statement {
   append(stmt: Statement): Statement;
   append(sql: string, ...params: any[]): Statement;
   pack(): [string, any[]];
+
+  /**
+   * aliases to pack()
+   */
+  spread(): [string, any[]];
+
+  /**
+   * rebind the binding params of statment
+   * @param params 
+   */
+  rebind(newParams: any[]): Statement;
 }
 
 declare function SQLStringTemplate(strings: TemplateStringsArray, ...args: any[]): Statement;
@@ -14,6 +25,7 @@ declare function SQLStringTemplate(strings: TemplateStringsArray, ...args: any[]
 declare namespace SQLStringTemplate {
   function set(values: object): Statement;
   function values(values: object): Statement;
+  function join(values: any[]): Statement;
 }
 
 export = SQLStringTemplate;

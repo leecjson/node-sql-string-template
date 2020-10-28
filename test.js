@@ -84,3 +84,17 @@ test('function assertion', () => {
   expect(() => $`DELETE FROM user WHERE id=${() => 1}`).toThrowError();
   expect(() => $`DELETE FROM user WHERE id=${() => "name"}`).toThrowError();
 });
+
+
+test('exports.join', () => {
+  const list = [
+    5, 
+    '23', 
+    'fw'
+  ];
+  expect($`SELECT * FROM WHERE X IN (${$.join(list)})`.spread())
+    .toStrictEqual([
+      'SELECT * FROM WHERE X IN (?, ?, ?)',
+      list
+    ]);
+});
