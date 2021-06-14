@@ -32,6 +32,17 @@ test('select case', () => {
     ]);
 });
 
+test('raw variables do not count as parameters', () => {
+  const itemId = 'supercalifragilisticexpialidocious';
+  const tableName = 'project.dataset.table'
+  const {sql, params} = $`SELECT * FROM \`${$.raw(tableName)}\` WHERE item_id = ${itemId}`
+  expect({sql, params})
+    .toStrictEqual({
+      sql: `SELECT * FROM \`${tableName}\` WHERE item_id = ?`,
+      params: [itemId]
+    });
+});
+
 test('exports.set', () => {
   const data = {
     userName: 'mytest',
@@ -88,8 +99,8 @@ test('function assertion', () => {
 
 test('exports.join', () => {
   const list = [
-    5, 
-    '23', 
+    5,
+    '23',
     'fw'
   ];
   expect($`SELECT * FROM WHERE X IN (${$.join(list)})`.spread())

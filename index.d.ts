@@ -15,7 +15,7 @@ export declare class Statement {
 
   /**
    * rebind the binding params of statment
-   * @param params 
+   * @param params
    */
   rebind(newParams: any[]): Statement;
 }
@@ -26,6 +26,7 @@ declare namespace SQLStringTemplate {
   function set(values: object): Statement;
   function values(values: object): Statement;
   function join(values: any[]): Statement;
+  function raw(value: any): Statement;
 }
 
 export = SQLStringTemplate;
