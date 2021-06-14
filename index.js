@@ -21,7 +21,7 @@ class Statement {
     }
     return this;
   }
-  
+
   pack() {
     return [this._sql, this._params];
   }
@@ -47,8 +47,8 @@ class Statement {
 }
 
 /**
- * @param {string[]} strings 
- * @param  {...any} params 
+ * @param {string[]} strings
+ * @param  {...any} params
  */
 exports = module.exports = function (strings, ...args) {
   if (args.length == 0) {
@@ -103,3 +103,7 @@ exports.join = (values) => {
   assert(Array.isArray(values));
   return new Statement(values.map(() => '?').join(', '), [...values]);
 };
+
+exports.raw = (value) => {
+  return new Statement(value);
+}

@@ -118,3 +118,12 @@ const stmt = SQL`select * from tbl where a in (${SQL.join(list)})`;
 stmt.sql; /* select * from tbl where a in (?, ?, ?) */
 stmt.params; /* ["Nick", "Adidas", "Jordon"] */
 ```
+
+### raw
+```javascript
+const tableName = 'project.dataset.table';
+const itemId = 345;
+const stmt = $`SELECT * FROM ${$.raw(tableName)} WHERE item_id = ${itemId}`
+stmt.sql; /* SELECT * FROM project.dataset.table WHERE item_id = ?` */
+stmt.params; /* [345] */
+```
